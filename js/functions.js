@@ -2,9 +2,8 @@
 
 const checkLengthString = (string, maxLength) => string.length <= maxLength;
 
-console.log('Проверка длины строки: ', checkLengthString('проверяемая строка абрвал', 27));
-console.log('Проверка длины строки: ', checkLengthString('проверяемая строка абрвал', 3));
-
+checkLengthString('проверяемая строка абрвал', 27);
+checkLengthString('проверяемая строка абрвал', 3);
 
 // Функция для проверки, является ли строка палиндромом.
 
@@ -13,8 +12,8 @@ const isPalindrome = (str) => {
   return normalizedStr === [...normalizedStr].reverse().join('');
 };
 
-console.log('Проверка на палиндромность: ', isPalindrome('Лёша на полке клопа нашёл '));
-console.log('Проверка на палиндромность: ', isPalindrome('Кот'));
+isPalindrome('Лёша на полке клопа нашёл ');
+isPalindrome('Кот');
 
 
 /*
@@ -32,7 +31,7 @@ const returnNumber = (input) => {
   return digits ? +digits : NaN;
 };
 
-console.log('Пытаемся вернуть число: ', returnNumber('1 кефир, 0.5 батона'));
-console.log('Пытаемся вернуть число: ', returnNumber('а я томат'));
-console.log('Пытаемся вернуть число: ', returnNumber(-1.5));
-console.log('Пытаемся вернуть число: ', returnNumber('агент 007'));
+returnNumber('1 кефир, 0.5 батона');
+returnNumber('а я томат');
+returnNumber(-1.5);
+returnNumber('агент 007');
