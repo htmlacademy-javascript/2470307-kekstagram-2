@@ -1,0 +1,25 @@
+const thumbnailsContainer = document.querySelector('.pictures');
+const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
+
+const thumbnailsFragment = document.createDocumentFragment();
+
+const renderThumbnail = (thumbnail) => {
+  const thumbnailElement = thumbnailTemplate.cloneNode(true);
+  const imageElement = thumbnailElement.querySelector('.picture__img');
+
+  imageElement.src = thumbnail.url;
+  imageElement.alt = thumbnail.description;
+  thumbnailElement.querySelector('.picture__comments').textContent = thumbnail.comments.length;
+  thumbnailElement.querySelector('.picture__likes').textContent = thumbnail.likes;
+
+  return thumbnailElement;
+};
+
+const renderThumbnails = (thumbnails) => {
+  thumbnails?.forEach((thumbnail) => {
+    thumbnailsFragment.appendChild(renderThumbnail(thumbnail));
+  });
+  thumbnailsContainer.appendChild(thumbnailsFragment);
+};
+
+export { renderThumbnails };
