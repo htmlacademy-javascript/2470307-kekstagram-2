@@ -27,8 +27,6 @@ const RandomIndexRangeMessageQuantity = {
 
 const {arrayMessages, arrayNames, arrayDescriptions} = dataArray();
 
-const photos = [];
-
 const addIdComment = (index = 1) => {
   const randomId = createRandomIdFromRangeGenerator(index, index * INDEX_MAX_RANGE);
 
@@ -78,7 +76,7 @@ const addPhoto = (index = 0) => ({
   comments: addComments(),
 });
 
-const addPhotos = () => {
+const addPhotos = (photos) => {
   for (let i = 0; i < PHOTO_COUNT; ++i) {
     photos.push(addPhoto(i));
   }

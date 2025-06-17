@@ -1,3 +1,8 @@
-import {addPhotos} from './create-array-miniatures';
+import { addPhotos } from './create-array-miniatures';
+import { renderThumbnails } from './render-thumbnails';
 
-addPhotos();
+const photos = [];
+
+addPhotos(photos);
+
+renderThumbnails(photos);
