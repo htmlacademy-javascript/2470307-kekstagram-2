@@ -1,5 +1,5 @@
-import { addPhotos } from './create-array-miniatures';
-import { renderThumbnails } from './render-thumbnails';
+import { addPhotos } from './create-array-miniatures.js';
+import { renderThumbnails } from './render-thumbnails.js';
 
 const photos = [];
 
