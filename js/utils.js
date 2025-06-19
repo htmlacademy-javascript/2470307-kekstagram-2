@@ -12,4 +12,10 @@ const createRandomIdFromRangeGenerator = (min = 0, max = 1) => {
   return currentValue;
 };
 
-export { getRandomInRange, createRandomIdFromRangeGenerator };
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const toggleClass = (element, className) => {
+  element.classList.toggle(className);
+};
+
+export { getRandomInRange, createRandomIdFromRangeGenerator, isEscapeKey, toggleClass };
