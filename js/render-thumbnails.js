@@ -1,4 +1,4 @@
-import { showBigPicture } from './render-big-picture';
+import { showBigPicture } from './render-big-picture.js';
 
 const thumbnailsContainer = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
