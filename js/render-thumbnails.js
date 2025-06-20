@@ -1,3 +1,5 @@
+import { showBigPicture } from './render-big-picture.js';
+
 const thumbnailsContainer = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
@@ -11,6 +13,11 @@ const renderThumbnail = (thumbnail) => {
   imageElement.alt = thumbnail.description;
   thumbnailElement.querySelector('.picture__comments').textContent = thumbnail.comments.length;
   thumbnailElement.querySelector('.picture__likes').textContent = thumbnail.likes;
+
+  thumbnailElement.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    showBigPicture(thumbnail);
+  });
 
   return thumbnailElement;
 };
