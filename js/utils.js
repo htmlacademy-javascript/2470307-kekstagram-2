@@ -18,4 +18,13 @@ const toggleClass = (element, className) => {
   element.classList.toggle(className);
 };
 
-export { getRandomInRange, createRandomIdFromRangeGenerator, isEscapeKey, toggleClass };
+const numDecline = (num, nominative, genitiveSingular, genitivePlural) => {
+  if (num % 10 === 0 || num % 100 > 4 && num % 100 < 21) {
+    return genitivePlural;
+  }
+  return num % 10 === 1
+    ? nominative
+    : genitiveSingular;
+};
+
+export { getRandomInRange, createRandomIdFromRangeGenerator, isEscapeKey, toggleClass, numDecline };
