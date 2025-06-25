@@ -3,8 +3,6 @@ import { showBigPicture } from './render-big-picture.js';
 const thumbnailsContainer = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const thumbnailsFragment = document.createDocumentFragment();
-
 const renderThumbnail = (thumbnail) => {
   const thumbnailElement = thumbnailTemplate.cloneNode(true);
   const imageElement = thumbnailElement.querySelector('.picture__img');
@@ -23,6 +21,9 @@ const renderThumbnail = (thumbnail) => {
 };
 
 const renderThumbnails = (thumbnails) => {
+  thumbnailsContainer.querySelectorAll('.picture').forEach((element) => element.remove());
+  const thumbnailsFragment = document.createDocumentFragment();
+
   thumbnails?.forEach((thumbnail) => {
     thumbnailsFragment.appendChild(renderThumbnail(thumbnail));
   });
