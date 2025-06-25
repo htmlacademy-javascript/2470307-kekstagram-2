@@ -1,19 +1,26 @@
 
 import '../vendor/pristine/pristine.min.js';
-import { isDescriptionValid, errorMessgeDescription, isHashtagsValid, geterrorMessageHashtags} from './validation.js';
-import { isEscapeKey, toggleClass, } from './utils.js';
+import { sendData } from './api.js';
 import { initSlider, resetEffect } from './effects-image.js';
+import { notification } from './notifications.js';
 import { onMiniusButtonClick, onPlusButtonClick, changeZoom } from './scale-image.js';
+import { isEscapeKey, toggleClass, } from './utils.js';
+import { isDescriptionValid, errorMessgeDescription, isHashtagsValid, geterrorMessageHashtags} from './validation.js';
 
 const PRIORITY_PRISTINE = 2;
 const DEFAULT_SCALE = 100;
+
+const SubmitButtonText = {
+  DEFAULT: 'Опубликовать',
+  SENDING: 'Отправляю...',
+};
 
 
 const uploadImageForm = document.querySelector('.img-upload__form');
 const uploadInputImage = uploadImageForm.querySelector('.img-upload__input');
 const uploadOverlayImage = uploadImageForm.querySelector('.img-upload__overlay');
 const uploadCancelButton = uploadImageForm.querySelector('.img-upload__cancel');
-const submitButton = document.querySelector('.img-upload__submit');
+const submitButton = uploadImageForm.querySelector('.img-upload__submit');
 const hashtagsInput = uploadImageForm.querySelector('.text__hashtags');
 const descriptionInput = uploadImageForm.querySelector('.text__description');
 
@@ -47,7 +54,13 @@ const closeUploadForm = () => {
 };
 
 const onUploadFormEscapeKeyDown = (evt) => {
-  if (isEscapeKey(evt) && document.activeElement !== hashtagsInput && document.activeElement !== descriptionInput) {
+  evt.stopPropagation();
+  if (
+    isEscapeKey(evt) &&
+    !document.body.classList.contains('notification-open') &&
+    !evt.target.classList.contains('text__hashtags') &&
+    !evt.target.classList.contains('text__description')
+  ) {
     closeUploadForm();
     document.removeEventListener('keydown', onUploadFormEscapeKeyDown);
   }
@@ -67,7 +80,20 @@ const openUploadForm = () => {
 const onUploadFormSubmit = (evt) => {
   evt.preventDefault();
   if (pristine.validate()) {
-    uploadImageForm.submit();
+    submitButton.disabled = true;
+    submitButton.textContent = SubmitButtonText.SENDING;
+    sendData(new FormData(uploadImageForm))
+      .then(() => {
+        notification.success();
+        closeUploadForm();
+      })
+      .catch(() => {
+        notification.error();
+      })
+      .finally(() => {
+        submitButton.disabled = false;
+        submitButton.textContent = SubmitButtonText.DEFAULT;
+      });
   }
 };
 

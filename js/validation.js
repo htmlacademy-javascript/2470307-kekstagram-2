@@ -2,6 +2,7 @@ import { numDecline } from './utils.js';
 
 const MAX_LENGTH_DESCRIPTION = 140;
 const MAX_HASHTAGS_COUNT = 5;
+const HASHTAG_REGEXP = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const HashtagLengthLimits = {
   MIN: 2,
@@ -48,7 +49,7 @@ const isHashtagsValid = (value) => {
       error: `Максимум ${MAX_HASHTAGS_COUNT} ${numDecline(MAX_HASHTAGS_COUNT, 'хэштега', 'хэштегов', 'хэштегов')}`
     },
     {
-      check: inputArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
+      check: inputArray.some((item) => !HASHTAG_REGEXP.test(item)),
       error: 'Хэш-тег содержит недопустимые символы'
     }
   ];

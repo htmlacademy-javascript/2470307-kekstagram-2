@@ -1,11 +1,21 @@
-import { addPhotos } from './create-array-miniatures.js';
 import { renderThumbnails } from './render-thumbnails.js';
 import { renderUploadForm } from './upload-photo-form.js';
+import { getData } from './api.js';
+import { notification } from './notifications.js';
 
-const photos = [];
+let photos = [];
 
-addPhotos(photos);
+const onSuccess = (data) => {
+  photos = data.slice();
+  renderThumbnails(photos);
+};
 
-renderThumbnails(photos);
+const onFail = () => {
+  notification.dataError({ message: 'Ошибка загрузки фотографий.' });
+};
+
+getData()
+  .then(onSuccess)
+  .catch(onFail);
 
 renderUploadForm();
