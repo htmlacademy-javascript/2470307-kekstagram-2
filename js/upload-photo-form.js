@@ -1,7 +1,7 @@
 
 import '../vendor/pristine/pristine.min.js';
 import { sendData } from './api.js';
-import { initSlider, resetEffect } from './effects-image.js';
+import { resetEffect } from './effects-image.js';
 import { notification } from './notifications.js';
 import { onMiniusButtonClick, onPlusButtonClick, changeZoom } from './scale-image.js';
 import { isEscapeKey, toggleClass, } from './utils.js';
@@ -47,6 +47,7 @@ const closeUploadForm = () => {
     uploadImageForm.reset();
     pristine.reset();
     submitButton.disabled = true;
+    uploadInputImage.value = '';
     changeZoom(DEFAULT_SCALE);
     resetEffect();
     effectLevelContainer.style.display = 'none';
@@ -71,9 +72,9 @@ const openUploadForm = () => {
     toggleUploadForm();
     document.addEventListener('keydown', onUploadFormEscapeKeyDown);
     changeZoom(DEFAULT_SCALE);
-    initSlider();
     resetEffect();
     effectLevelContainer.style.display = 'none';
+    submitButton.disabled = false;
   }
 };
 
