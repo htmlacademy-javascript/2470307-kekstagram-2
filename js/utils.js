@@ -13,4 +13,12 @@ const numDecline = (num, nominative, genitiveSingular, genitivePlural) => {
     : genitiveSingular;
 };
 
-export { isEscapeKey, toggleClass, numDecline };
+const applyDebounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { isEscapeKey, toggleClass, numDecline, applyDebounce };

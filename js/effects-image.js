@@ -92,7 +92,7 @@ const applyEffect = () => {
     const value = effectLevelSlider.noUiSlider.get();
     previewImage.style.filter = effect.setFilter(value);
     effectLevelContainer.style.display = 'block';
-    effectLevelValue.value = value;
+    effectLevelValue.value = parseFloat(value) % 1 === 0 ? parseInt(value, 10) : parseFloat(value).toFixed(1);
   }
 };
 

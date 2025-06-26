@@ -1,3 +1,5 @@
+const IMAGE_TRANSFORM_DIVIDER = 100;
+
 const negativeScale = -1;
 
 const Zoom = {
@@ -22,7 +24,7 @@ const changeZoom = (factor = 1) => {
   }
 
   scaleControlValue.value = `${size}%`;
-  imagePreview.style.transform = `scale(${size / 100})`;
+  imagePreview.style.transform = `scale(${size / IMAGE_TRANSFORM_DIVIDER})`;
 };
 
 const onMiniusButtonClick = () => {
