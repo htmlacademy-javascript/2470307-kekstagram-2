@@ -30,10 +30,6 @@ let activeFilterElement = filtersContainerElement.querySelector(`.${ACTIVE_BUTTO
 
 let posts = [];
 
-const clearThumbnails = () => {
-  document.querySelectorAll('a.picture').forEach((element) => element.remove());
-};
-
 const useFilter = (filterName, renderThumbnailsFunction) => {
   let sortFunction = filterFunctions.showDefault;
 
@@ -46,7 +42,6 @@ const useFilter = (filterName, renderThumbnailsFunction) => {
       break;
   }
 
-  clearThumbnails();
   renderThumbnailsFunction(sortFunction(posts));
 };
 
