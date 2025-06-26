@@ -31,7 +31,7 @@ let activeFilterElement = filtersContainerElement.querySelector(`.${ACTIVE_BUTTO
 let posts = [];
 
 const clearThumbnails = () => {
-  document.querySelectorAll('.picture').forEach((element) => element.remove());
+  document.querySelectorAll('a.picture').forEach((element) => element.remove());
 };
 
 const useFilter = (filterName, renderThumbnailsFunction) => {
