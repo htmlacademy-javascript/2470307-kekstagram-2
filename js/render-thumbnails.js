@@ -20,7 +20,12 @@ const renderThumbnail = (thumbnail) => {
   return thumbnailElement;
 };
 
+const clearThumbnails = () => {
+  document.querySelectorAll('a.picture').forEach((element) => element.remove());
+};
+
 const renderThumbnails = (thumbnails) => {
+  clearThumbnails();
   thumbnailsContainer.querySelectorAll('.picture').forEach((element) => element.remove());
   const thumbnailsFragment = document.createDocumentFragment();
 

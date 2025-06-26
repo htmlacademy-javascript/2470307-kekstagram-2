@@ -14,7 +14,7 @@ const errorMessgeDescription = () => `Длина комментария не м�
 const isDescriptionValid = (value) => value.length <= MAX_LENGTH_DESCRIPTION;
 
 let errorMessageHashtags = '';
-const geterrorMessageHashtags = () => errorMessageHashtags;
+const getErrorMessageHashtags = () => errorMessageHashtags;
 
 const isHashtagsValid = (value) => {
   errorMessageHashtags = '';
@@ -63,4 +63,4 @@ const isHashtagsValid = (value) => {
   });
 };
 
-export { isDescriptionValid, errorMessgeDescription, isHashtagsValid, geterrorMessageHashtags};
+export { isDescriptionValid, errorMessgeDescription, isHashtagsValid, getErrorMessageHashtags};

@@ -5,7 +5,7 @@ import { resetEffect } from './effects-image.js';
 import { notification } from './notifications.js';
 import { onMiniusButtonClick, onPlusButtonClick, changeZoom } from './scale-image.js';
 import { isEscapeKey, toggleClass, } from './utils.js';
-import { isDescriptionValid, errorMessgeDescription, isHashtagsValid, geterrorMessageHashtags} from './validation.js';
+import { isDescriptionValid, errorMessgeDescription, isHashtagsValid, getErrorMessageHashtags} from './validation.js';
 
 const PRIORITY_PRISTINE = 2;
 const DEFAULT_SCALE = 100;
@@ -144,7 +144,7 @@ const renderUploadForm = () => {
 };
 
 pristine.addValidator(descriptionInput, isDescriptionValid, errorMessgeDescription, PRIORITY_PRISTINE, false);
-pristine.addValidator(hashtagsInput, isHashtagsValid, geterrorMessageHashtags, PRIORITY_PRISTINE, false);
+pristine.addValidator(hashtagsInput, isHashtagsValid, getErrorMessageHashtags, PRIORITY_PRISTINE, false);
 
 hashtagsInput.addEventListener('input', onHashtagInput);
 descriptionInput.addEventListener('input', onDescriptionInput);
