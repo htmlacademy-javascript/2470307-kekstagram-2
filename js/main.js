@@ -2,7 +2,7 @@ import { renderThumbnails } from './render-thumbnails.js';
 import { renderUploadForm } from './upload-photo-form.js';
 import { getData } from './api.js';
 import { notification } from './notifications.js';
-import { initSlider } from './effects-image.js';
+import { initializeSlider } from './effects-image.js';
 import { initializeFilters } from './filters.js';
 
 let photos = [];
@@ -23,5 +23,5 @@ getData()
   .catch(onFail);
 
 
-initSlider();
+initializeSlider();
 renderUploadForm();

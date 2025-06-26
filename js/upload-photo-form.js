@@ -9,6 +9,7 @@ import { isDescriptionValid, errorMessgeDescription, isHashtagsValid, geterrorMe
 
 const PRIORITY_PRISTINE = 2;
 const DEFAULT_SCALE = 100;
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const SubmitButtonText = {
   DEFAULT: 'Опубликовать',
@@ -26,9 +27,11 @@ const descriptionInput = uploadImageForm.querySelector('.text__description');
 
 const scaleSmaller = uploadImageForm.querySelector('.scale__control--smaller');
 const scaleBigger = uploadImageForm.querySelector('.scale__control--bigger');
+const previewImage = uploadImageForm.querySelector('.img-upload__preview img');
 
 const effectLevelContainer = uploadImageForm.querySelector('.img-upload__effect-level');
 const effectsList = uploadImageForm.querySelector('.effects__list');
+const effectsPreviewElements = uploadImageForm.querySelectorAll('.effects__preview');
 
 const pristine = new Pristine(uploadImageForm, {
   classTo: 'img-upload__field-wrapper',
@@ -48,6 +51,7 @@ const closeUploadForm = () => {
     pristine.reset();
     submitButton.disabled = true;
     uploadInputImage.value = '';
+    previewImage.src = 'img/upload-default-image.jpg';
     changeZoom(DEFAULT_SCALE);
     resetEffect();
     effectLevelContainer.style.display = 'none';
@@ -114,6 +118,19 @@ const renderUploadForm = () => {
   });
   uploadInputImage.addEventListener('change', () => {
     if (uploadInputImage.files.length > 0) {
+      const file = uploadInputImage.files[0];
+      const fileName = file.name.toLowerCase();
+      const fileExtension = fileName.split('.').pop();
+      if (!FILE_TYPES.includes(fileExtension)) {
+        notification.error('Недопустимый формат файла. Используйте JPG, JPEG или PNG.');
+        uploadInputImage.value = '';
+        return;
+      }
+      const url = URL.createObjectURL(file);
+      previewImage.src = url;
+      effectsPreviewElements.forEach((preview) => {
+        preview.style.backgroundImage = `url(${url})`;
+      });
       openUploadForm();
     }
   });

@@ -109,7 +109,7 @@ const resetEffect = () => {
   }
 };
 
-const initSlider = () => {
+const initializeSlider = () => {
   if (effectLevelSlider) {
     noUiSlider.create(effectLevelSlider, {
       range: {
@@ -128,4 +128,4 @@ const initSlider = () => {
   }
 };
 
-export { initSlider, resetEffect };
+export { initializeSlider, resetEffect };
